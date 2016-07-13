@@ -1,0 +1,71 @@
+/*
+ Theme Name:   Twenty Thirteen hundredtickets
+ Theme URI:    TODO
+ Description:  Twenty Thirteen Child Theme for hundredtickets.net
+ Author:       David Schuld
+ Author URI:   http://hundredtickets.net
+ Template:     twentythirteen
+ Version:      0.1
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+ Tags:         map, responsive-layout, accessibility-ready
+ Text Domain:  twenty-thirteen-hundredtickets
+*/
+
+/*This configures the post content area, and needs to stay, otherwise the content is hidden behind the header
+*/ 
+
+@import url('maps-style.css');
+
+html {
+	font-family: Montserrat, "Helvetica Neue", sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Montserrat, "Helvetica Neue", sans-serif;
+
+}
+
+.nav-menu .current_page_item > a,
+.nav-menu .current_page_ancestor > a,
+.nav-menu .current-menu-item > a,
+.nav-menu .current-menu-ancestor > a {
+	color: #000000;
+	font-style: normal;
+}
+
+
+.pageContainer {
+  top: 300px;  
+}
+
+.site-main {
+	position: relative;
+	padding-top: 550px;
+}
+
+
+.site-header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+	top: 0;
+	transition: top 1s ease-in-out;
+}
+
+
+.nav-up {
+  top: -500px;  
+}
+
+.main-up {
+	padding-top: 100px;  
+	
+}
+
+.main-down {
+	padding-top: 550px;
+	
+}
