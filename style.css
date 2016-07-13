@@ -119,10 +119,14 @@ a:hover {
 }
 
 
-.navigation a {
-    color: #60a0df;
+.post-navigation a {
+    color: #28435d;
 }
 
+.post-navigation a:hover {
+    color: #28435d;
+    text-decoration: underline;
+}
 
 
 .entry-meta a {
