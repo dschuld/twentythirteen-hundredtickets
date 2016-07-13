@@ -18,13 +18,13 @@
 @import url('maps-style.css');
 
 html {
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
+    font-family: Montserrat, "Helvetica Neue", sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: Montserrat, "Helvetica Neue", sans-serif;
+    font-family: Montserrat, "Helvetica Neue", sans-serif;
 
 }
 
@@ -32,18 +32,19 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu .current_page_ancestor > a,
 .nav-menu .current-menu-item > a,
 .nav-menu .current-menu-ancestor > a {
-	color: #000000;
-	font-style: normal;
+    color: #000000;
+    font-style: normal;
 }
 
 
 .pageContainer {
-  top: 300px;  
+    top: 300px;  
 }
 
 .site-main {
-	position: relative;
-	padding-top: 550px;
+    position: relative;
+    padding-top: 550px;
+    transition: top 1s ease-in-out;
 }
 
 
@@ -51,21 +52,140 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     width: 100%;
     z-index: 10;
-	top: 0;
-	transition: top 1s ease-in-out;
+    top: 0;
+    transition: top 1s ease-in-out;
 }
+
 
 
 .nav-up {
-  top: -500px;  
+    top: -500px;  
 }
 
-.main-up {
-	padding-top: 100px;  
-	
+.site-footer .widget a {
+    color: #60a0df;
 }
 
-.main-down {
-	padding-top: 550px;
-	
+a {
+    color: #43709c;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #43709c;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+a:active,
+a:hover {
+    color: #43709c;
+    outline: 0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.site-footer .sidebar-container {
+    background-color: #0d161f;
+    padding: 20px 0;
+}
+
+.paging-navigation {
+    background-color: #0d161f;
+    padding: 40px 0;
+}
+
+.paging-navigation .meta-nav {
+    background-color: #0d161f;
+    color: #60a0df;
+}
+
+.paging-navigation a {
+    color: #60a0df;
+}
+
+
+.paging-navigation a:hover {
+    color: #60a0df;
+    text-decoration: underline;
+}
+
+.paging-navigation a:hover .meta-nav {
+    background-color: #0d161f;
+}
+
+
+.navigation a {
+    color: #60a0df;
+}
+
+
+
+.entry-meta a {
+    color: #28435d;
+}
+
+.entry-meta a:hover {
+    color: #43709c;
+}
+
+.entry-title a {
+    color: #141412;
+}
+
+.entry-title a:visited {
+    color: #141412;
+}
+
+.entry-title a:hover {
+    color: #43709c;
+}
+
+.comment-author .fn, .comment-author .url, .comment-reply-link, .comment-reply-login {
+    color: #43709c; 
+}
+
+input[type="submit"]{
+    background: #060b0f;
+    background: -webkit-linear-gradient(top, #060b0f 0%, #14212e 100%);
+    background: linear-gradient(to bottom, #060b0f 0%, #14212e 100%);
+    outline: none;
+
+}
+
+input[type="submit"]:hover {
+    background: #1a2c3e;
+    background: -webkit-linear-gradient(top, #1a2c3e 0%, #14212e 100%);
+    background: linear-gradient(to bottom, #1a2c3e 0%, #14212e 100%);
+    outline: none;
+
+}
+
+/* hover color for inner menus */
+ul.nav-menu ul a:hover,
+.nav-menu ul ul a:hover,
+ul.nav-menu ul a:focus,
+.nav-menu ul ul a:focus {
+	background-color: #43709c;
+}
+
+/* hover color for outer and non-hover for inner menus */
+.nav-menu .sub-menu,
+.nav-menu .children,
+.nav-menu li:hover > a,
+.nav-menu li a:hover,
+.nav-menu li:focus > a,
+.nav-menu li a:focus {
+	background-color: #0d161f;
+	color: #fff;
+}
+
+/* Menu bar */
+.navbar {
+	background-color: #dfecf8;
+    
 }
