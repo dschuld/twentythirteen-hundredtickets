@@ -62,6 +62,11 @@ h1, h2, h3, h4, h5, h6 {
     top: -500px;  
 }
 
+.site-footer {
+	background-color: #dfecf8;
+	color: #43709c;
+}
+
 .site-footer .widget a {
     color: #60a0df;
 }
@@ -192,4 +197,9 @@ ul.nav-menu ul a:focus,
 .navbar {
 	background-color: #dfecf8;
     
+}
+
+/* 5.10 Search Results/No posts */
+.page-header {
+	background-color: #dfecf8;
 }
