@@ -45,6 +45,10 @@ function showMap() {
     $('.site-main').css({
         'top': 0
     });
+    
+    $('.site-footer').css({
+        'top': 0
+    });
 
 }
 
@@ -63,6 +67,10 @@ function hideMap() {
     if (offset > 0) {
         $('.site-main').css({
             'top': 0 - offset
+        });
+        $('.site-footer').css({
+            'top': 0 - offset,
+            'position': 'relative'
         });
 
     }
