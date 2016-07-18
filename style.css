@@ -133,7 +133,13 @@ a:hover {
     text-decoration: underline;
 }
 
+.attachment .entry-meta a, .attachment .entry-meta .edit-link:before, .attachment .full-size-link:before {
+    color: #28435d;
+}
 
+.attachment .hentry {
+    background-color: #dfecf8;
+}
 .entry-meta a {
     color: #28435d;
 }
@@ -201,5 +207,9 @@ ul.nav-menu ul a:focus,
 
 /* 5.10 Search Results/No posts */
 .page-header {
+	background-color: #dfecf8;
+}
+
+.archive-header {
 	background-color: #dfecf8;
 }

@@ -1,20 +1,3 @@
-function getLastSegmentFromLink(link) {
-
-    var targetHref = link.href;
-
-
-    while (targetHref.lastIndexOf('/') === targetHref.length - 1) {
-
-        targetHref = targetHref.substring(0, targetHref.length - 1);
-    }
-
-    if (targetHref.indexOf('/') == -1) {
-        return targetHref;
-    }
-
-    return targetHref.slice(targetHref.lastIndexOf('/') + 1);
-
-}
 
 function stripDomainFromLink(link) {
     var targetHref = link.href.replace('https://hundredtickets.net', '');
@@ -35,11 +18,12 @@ function stripDomainFromLink(link) {
 
     var sendAjaxRequest = function (requestData) {
 
-
+    
         $('#main').find('article,nav').remove();
         $(document).scrollTop();
 
         $('#main').append('<div style="display: block; width: 10%; margin: auto; padding: 30px;" id="loader"><img src="https://drive.google.com/uc?export=download&amp;id=0B48vYXs63P2lYWhLNm42UFdISlU"></img></div>');
+        
         $('#content').load(requestData.url + ' #content', function (data) {
             $('#main #loader').remove();
         });
@@ -67,6 +51,7 @@ function stripDomainFromLink(link) {
     // iw-content is the class of the info window div on the map, used for catching then a link from map to blog post is clicked
     $(document).on('click', '.entry-title a, .more-link, .menu-item-object-category', function (event) {
         event.preventDefault();
+        
         scrollToTop();
         hideMap();
         var targetHref = stripDomainFromLink(event.target);
@@ -77,15 +62,33 @@ function stripDomainFromLink(link) {
 
 
     });
+    
+    //For ajax-loading gallery images
+    //event.target is <img> inside <a>
+    $(document).on('click', '.gallery-icon a, .entry-attachment a', function (event) {
+        event.preventDefault();
+        
+        
+        scrollToTop();
+        hideMap();
+        var targetHref = stripDomainFromLink(event.target.parentElement);
+        sendAjaxRequest({
+            post_slug: targetHref,
+            url: event.target.parentElement
+        });
 
-    $(document).on('click', '.nav-links a, .widget_recent_entries  a, .widget_archive  a', function (event) {
+
+    });
+    
+    $(document).on('click', '.image-navigation a, .nav-links a, .widget_recent_entries  a, .widget_archive  a', function (event) {
 
         event.preventDefault();
 
         scrollToTop();
 
-        var pageNumber = getLastSegmentFromLink(event.target);
+        var targetHref = stripDomainFromLink(event.target);
         sendAjaxRequest({
+            post_slug: targetHref,
             url: event.target
         });
     });

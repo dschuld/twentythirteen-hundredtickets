@@ -15,7 +15,8 @@
  */
 
 
-var LOCAL_WORDPRESS_THEME_DIR = '/home/david/dev/theme/twentythirteen-hundredtickets/';
+var LOCAL_WORDPRESS_THEME_DIR = '/home/david/dev/theme/twentythirteen-hundredtickets-dev/';
+var LOCAL_WORDPRESS_PROD_THEME_DIR = '/home/david/dev/theme/twentythirteen-hundredtickets/';
 
 var gulp = require('gulp');
 var changed = require('gulp-changed'),
@@ -53,28 +54,31 @@ gulp.task('cssnano', function () {
 });
 
 
+gulp.task('deploy-themes', ['deploy-wordpress-prod','deploy-wordpress-dev'], function () {
+    //aggregator task
+
+});
+
+
+
 /*
  * Deploys the uglified sources to the wordpress theme
  */
 gulp.task('deploy-wordpress-prod', function () {
     gulp.src(['./js/*.js'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR + '/js'))
             .pipe(uglify())
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR + '/js'));
+            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR + '/js'));
 
     gulp.src(['./*.php'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR))
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
+            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR));
     
     gulp.src(['./screenshot.png'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR))
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
+            .pipe(changed(LOCAL_WORDPRESS_PROD_THEME_DIR))
+            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR));
     
     
     return gulp.src(['./style.css'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR))
-            .pipe(cssnano())
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
+            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR));
 
 });
 
@@ -82,23 +86,17 @@ gulp.task('deploy-wordpress-prod', function () {
 /*
  * Deploys the non-uglified sources to the wordpress theme 
  */
-gulp.task('deploy-wordpress-test', function () {
+gulp.task('deploy-wordpress-dev', function () {
     gulp.src(['./js/*.js'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR + '/js'))
             .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR + '/js'));
 
     gulp.src(['./*.php'])
+            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
+    
+     return gulp.src(['./screenshot.png'])
             .pipe(changed(LOCAL_WORDPRESS_THEME_DIR))
             .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
     
-    gulp.src(['./screenshot.png'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR))
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
-    
-    
-    return gulp.src(['./style.css'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR))
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
 });
 
 
