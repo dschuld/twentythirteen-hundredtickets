@@ -36,6 +36,11 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
 }
 
+.sub-menu a{
+    color: #dfecf8;
+    font-style: normal;
+}
+
 
 .pageContainer {
     top: 300px;  
@@ -213,3 +218,12 @@ ul.nav-menu ul a:focus,
 .archive-header {
 	background-color: #dfecf8;
 }
+
+
+#mc_embed_signup {
+    background: #0d161f;
+    color: #60a0df;
+    clear: left;
+    font: 14px Helvetica,Arial,sans-serif;
+}
+

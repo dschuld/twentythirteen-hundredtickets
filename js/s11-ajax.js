@@ -49,7 +49,7 @@ function stripDomainFromLink(link) {
 
     // entry-title is the class of the article header divs, needs to be adapted according to script used
     // iw-content is the class of the info window div on the map, used for catching then a link from map to blog post is clicked
-    $(document).on('click', '.entry-title a, .more-link, .menu-item-object-category', function (event) {
+    $(document).on('click', '.entry-title a, .more-link, .menu-item-object-category, .menu-item-object-post', function (event) {
         event.preventDefault();
         
         scrollToTop();
