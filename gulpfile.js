@@ -15,70 +15,37 @@
  */
 
 
-var LOCAL_WORDPRESS_THEME_DIR = '/home/david/dev/theme/twentythirteen-hundredtickets-dev/';
-var LOCAL_WORDPRESS_PROD_THEME_DIR = '/home/david/dev/theme/twentythirteen-hundredtickets/';
-
 var gulp = require('gulp');
 var changed = require('gulp-changed'),
-        jshint = require('gulp-jshint'),
-        concat = require('gulp-concat'),
-        uglify = require('gulp-uglify'),
-        imagemin = require('gulp-imagemin'),
-        clean = require('gulp-clean'),
-        cssnano = require('gulp-cssnano');
+        uglify = require('gulp-uglify');
 
+var devDir = process.env.LOCAL_DEV_THEME_DIR;
+var prodDir = process.env.LOCAL_PROD_THEME_DIR;
 
-gulp.task('default', ['scripts', 'cssnano'], function () {
-    //default aggregator
-});
-
-gulp.task('scripts-non-ugly', function () {
-    return gulp.src(["./js/libs/async/async.js", "./js/libs/markerclusterer/markerclusterer_compiled.js", "./js/libs/geojson/GeoJSON.js", "./js/pluginLoader.js", "./js/wpApi.js", "./js/FuTa.js", "./js/featurefactory.js", "./js/util.js", "./js/InfoWindow.js", "./js/geomodel.js", "./js/s11_controls.js", "./js/data.js", "./js/s11.js", "./js/locationIndicator.js", "./js/photoFeed.js", "./js/places.js", "./js/routes_regions.js", "./js/help-control.js"])
-            .pipe(changed('./../dist/'))
-            .pipe(concat('all.js'))
-            .pipe(gulp.dest('./../dist/'));
-});
-
-gulp.task('scripts', ['scripts-non-ugly'], function () {
-    return gulp.src(['./../dist/all.js'])
-            .pipe(uglify())
-            .pipe(gulp.dest('./../dist/'));
-});
-
-
-gulp.task('cssnano', function () {
-    return gulp.src(['./maps-style.css'])
-            .pipe(changed('./../dist/'))
-            .pipe(cssnano())
-            .pipe(gulp.dest('./../dist/'));
-});
-
-
-gulp.task('deploy-themes', ['deploy-wordpress-prod','deploy-wordpress-dev'], function () {
+gulp.task('deploy-themes', ['deploy-theme-prod','deploy-theme-dev'], function () {
     //aggregator task
 
 });
 
 
-
 /*
  * Deploys the uglified sources to the wordpress theme
  */
-gulp.task('deploy-wordpress-prod', function () {
+gulp.task('deploy-theme-prod', function () {
     gulp.src(['./js/*.js'])
             .pipe(uglify())
-            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR + '/js'));
+            .pipe(gulp.dest(prodDir + '/js'));
 
     gulp.src(['./*.php'])
-            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR));
+            .pipe(gulp.dest(prodDir));
     
-    gulp.src(['./screenshot.png'])
-            .pipe(changed(LOCAL_WORDPRESS_PROD_THEME_DIR))
-            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR));
+    gulp.src(['./screenshots/prod/screenshot.png'])
+            .pipe(changed(prodDir))
+            .pipe(gulp.dest(prodDir));
     
     
     return gulp.src(['./style.css'])
-            .pipe(gulp.dest(LOCAL_WORDPRESS_PROD_THEME_DIR));
+            .pipe(gulp.dest(prodDir));
 
 });
 
@@ -86,25 +53,15 @@ gulp.task('deploy-wordpress-prod', function () {
 /*
  * Deploys the non-uglified sources to the wordpress theme 
  */
-gulp.task('deploy-wordpress-dev', function () {
+gulp.task('deploy-theme-dev', function () {
     gulp.src(['./js/*.js'])
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR + '/js'));
+            .pipe(gulp.dest(devDir + '/js'));
 
     gulp.src(['./*.php'])
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
+            .pipe(gulp.dest(devDir));
     
-     return gulp.src(['./screenshot.png'])
-            .pipe(changed(LOCAL_WORDPRESS_THEME_DIR))
-            .pipe(gulp.dest(LOCAL_WORDPRESS_THEME_DIR));
+     return gulp.src(['./screenshots/dev/screenshot.png'])
+            .pipe(changed(devDir))
+            .pipe(gulp.dest(devDir));
     
 });
-
-
-
-gulp.task('jshint', function () {
-    return gulp.src(["./js/util.js", './js/featurefactory.js', './js/FuTa.js', './js/data.js', './js/geomodel.js', "./js/s11_controls.js", './js/s11.js', "./js/locationIndicator.js", "./js/photoFeed.js", "./js/places.js", "./js/routes_regions.js"])
-            .pipe(jshint())
-            .pipe(jshint.reporter('default'));
-});
-
-
